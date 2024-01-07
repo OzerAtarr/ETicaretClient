@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-declare var $: any
+import { data } from 'jquery';
+// declare var $: any
 
 
 @Component({
@@ -7,7 +8,7 @@ declare var $: any
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ETicaretClient';
   constructor() {}
   // constructor(private toastrService: CustomToastrService) {
@@ -30,10 +31,11 @@ export class AppComponent {
   //}
 
 
-    
+    ngOnInit(): void {
+
+    }
 
 }
-
 
 
   
