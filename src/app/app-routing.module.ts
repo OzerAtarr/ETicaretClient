@@ -1,3 +1,4 @@
+import { LoginModule } from './ui/components/login/login.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './admin/layout/layout.component';
@@ -24,7 +25,9 @@ then(module=> module.BasketsModule) },
 {path: "products", loadChildren: ()=> import("./ui/components/products/products.module").
 then(module=> module.ProductsModule) },
 {path: "register", loadChildren: ()=> import("./ui/components/register/register.module").
-then(module=> module.RegisterModule) }
+then(module=> module.RegisterModule) },
+{path: "login", loadChildren: ()=> import("./ui/components/login/login.module").
+then(module=> module.LoginModule) }
 
 ];
 
