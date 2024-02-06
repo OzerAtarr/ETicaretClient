@@ -1,41 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { data } from 'jquery';
-// declare var $: any
-
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/common/auth.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
+declare var $: any
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'ETicaretClient';
-  constructor() {}
-  // constructor(private toastrService: CustomToastrService) {
-  //   toastrService.message("Merhaba", "Özer", {
-  //     messageType: ToastrMessageType.Info,
-  //     position: ToastrPosition.TopCenter
-  //   });
-  //   toastrService.message("Merhaba", "Özer", {
-  //     messageType: ToastrMessageType.Warning,
-  //     position: ToastrPosition.TopLeft
-  //   });
-  //   toastrService.message("Merhaba", "Özer", {
-  //     messageType: ToastrMessageType.Error,
-  //     position: ToastrPosition.BottomFullWidth
-  //   });
-  //   toastrService.message("Merhaba", "Özer", {
-  //     messageType: ToastrMessageType.Warning,
-  //     position: ToastrPosition.TopRight
-  //   });
-  //}
+export class AppComponent {
+  constructor(public authService: AuthService, private toastrService: CustomToastrService, private router: Router) {
+    authService.identityCheck();
+  }
 
-
-    ngOnInit(): void {
-
-    }
-
+  signOut() {
+    localStorage.removeItem("accessToken");
+    this.authService.identityCheck();
+    this.router.navigate([""]);
+    this.toastrService.message("Oturum kapatılmıştır!", "Oturum Kapatıldı", {
+      messageType: ToastrMessageType.Warning,
+      position: ToastrPosition.TopRight
+    });
+  }
 }
-
-
-  
